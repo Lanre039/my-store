@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchCatalogue } from "../redux/actions/shopCatalogueActions";
 import CardCollection from "../components/CardCollection";
 import SideNavigation from "../components/SideNavigation";
+import img from "../images/shopping-cart.png";
 
 function HomePage(props) {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,21 +19,25 @@ function HomePage(props) {
   }, [collections, dispatch]);
 
   return (
-    <div className="container bg-light">
-      <div className="p-5 text-center">
-        <h4
-          style={{ cursor: "pointer" }}
-          className="font-italic text-nowrap"
+    <div className="bg-light">
+      <nav className="bg-info p-3 px-5 d-flex justify-content-end">
+        <div
+          style={{ width: "fit-content", cursor: "pointer" }}
+          className="bg-light d-flex justify-content-between align-items-center px-3 shadow"
           onClick={() => setIsOpen(!isOpen)}
         >
-          Click here to view cart
-        </h4>
-        <p>{cartItems.length > 0 ? "Item available in cart" : ""}</p>
+          <img src={img} alt="" width="25px" height="25px" />
+          <span className="text-white h5 p-2 ml-2 bg-dark">
+            {cartItems.length}
+          </span>
+        </div>
+      </nav>
+      <div className="mx-5 py-5">
+        <SideNavigation isOpen={isOpen} setIsOpen={setIsOpen} />
+        {!isFetching && collections && collections.length > 0 && (
+          <CardCollection collections={collections} />
+        )}
       </div>
-      <SideNavigation isOpen={isOpen} setIsOpen={setIsOpen} />
-      {!isFetching && collections && collections.length > 0 && (
-        <CardCollection collections={collections} />
-      )}
     </div>
   );
 }
