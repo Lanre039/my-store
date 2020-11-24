@@ -12,7 +12,7 @@ function Card({ collection }) {
   };
 
   return (
-    <div className="col-lg-3 col-md-4 col-sm-12 card mt-3 mb-3 p-3">
+    <div className="col-lg-3 col-md-4 col-sm-12 card mt-3 mb-3 p-3 shadow">
       <img
         src={image}
         className="card-img-top"
@@ -23,10 +23,12 @@ function Card({ collection }) {
       />
       <div className="card-body">
         <h5 className="card-title text-truncate text-capitalize">{title}</h5>
-        <p className="card-text text-truncate">{description}</p>
+        <p className="card-text text-truncate text-capitalize">{description}</p>
       </div>
       <ul className="list-group list-group-flush">
-        <li className="list-group-item text-capitalize">Price: {price}</li>
+        <li className="list-group-item h5 text-capitalize">
+          Price: &nbsp; ₦{price}
+        </li>
         <li className="list-group-item">
           <button
             className="btn btn-info"

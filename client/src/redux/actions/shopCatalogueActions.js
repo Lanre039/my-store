@@ -4,8 +4,6 @@ import {
   FETCH_CATALOGUE_SUCCESS,
 } from "../types";
 
-let apiBaseUri = process.env.REACT_APP_API_BASE_URL;
-
 export const fetchCatalogueStart = () => ({
   type: FETCH_CATALOGUE_START,
 });
@@ -20,6 +18,7 @@ export const fetchCatalogueFailure = (error) => ({
   payload: error,
 });
 
+const apiBaseUri = "https://fakestoreapi.com";
 export const fetchCatalogue = () => (dispatch) => {
   dispatch(fetchCatalogueStart());
 
