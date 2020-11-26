@@ -36,7 +36,13 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(cors({}));
+app.use(
+  cors({
+    origin: "https://unique-stores.herokuapp.com",
+    credentials: true,
+    methods: "GET,PUT,POST,PATCH,DELETE,OPTIONS",
+  })
+);
 
 app.post("/payment", (req, res) => {
   const body = {
