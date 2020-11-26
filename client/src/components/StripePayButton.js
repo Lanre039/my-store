@@ -1,8 +1,12 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import StripeCheckout from "react-stripe-checkout";
 import axios from "../utils/axiosConfig";
+import { clearCart } from "../redux/actions/cartActions";
 
 const StripePayButton = ({ price }) => {
+  const dispatch = useDispatch();
+
   const priceConversion = price * 100;
   const publishableKey = "pk_test_tm34JDTqrz4UbvxWeiuq06hU00lEitvkQL";
 
@@ -13,9 +17,9 @@ const StripePayButton = ({ price }) => {
     };
     try {
       await axios.post("/payment", data);
-      alert("Payment Successful");
+      dispatch(clearCart());
     } catch (error) {
-      alert("Payment Failed!");
+      alert("Payment below ₦1000 NOT allowed!");
       console.log("failed", error);
     }
   };
